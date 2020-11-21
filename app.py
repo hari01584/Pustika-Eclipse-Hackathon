@@ -610,6 +610,69 @@ def shoes():
         return render_template('order_product.html', x=x, tshirts=product, form=form)
     return render_template('shoes.html', shoes=products, form=form)
 
+#TODO: DUPLICATE
+
+@app.route('/cus01', methods=['GET', 'POST'])
+def cus01():
+    form = OrderForm(request.form)
+    # Create cursor
+    cur = mysql.cursor(dictionary=True)
+    # Get message
+    values = 'cus01'
+    cur.execute("SELECT * FROM products WHERE category=%s ORDER BY id ASC", (values,))
+    products = cur.fetchall()
+    # Close Connection
+    cur.close()
+
+    if request.method == 'POST' and form.validate():
+        name = form.name.data
+        mobile = form.mobile_num.data
+        order_place = form.order_place.data
+        quantity = form.quantity.data
+        pid = request.args['order']
+        now = datetime.datetime.now()
+        week = datetime.timedelta(days=7)
+        delivery_date = now + week
+        now_time = delivery_date.strftime("%y-%m-%d %H:%M:%S")
+        # Create Cursor
+        curs = mysql.cursor(dictionary=True)
+        if 'uid' in session:
+            uid = session['uid']
+            curs.execute("INSERT INTO orders(uid, pid, ofname, mobile, oplace, quantity, ddate) "
+                         "VALUES(%s, %s, %s, %s, %s, %s, %s)",
+                         (uid, pid, name, mobile, order_place, quantity, now_time))
+        else:
+            curs.execute("INSERT INTO orders(pid, ofname, mobile, oplace, quantity, ddate) "
+                         "VALUES(%s, %s, %s, %s, %s, %s)",
+                         (pid, name, mobile, order_place, quantity, now_time))
+        # Commit cursor
+        mysql.commit()
+        # Close Connection
+        cur.close()
+
+        flash('Order successful', 'success')
+        return render_template('cus01.html', shoes=products, form=form)
+    if 'view' in request.args:
+        q = request.args['view']
+        product_id = q
+        x = content_based_filtering(product_id)
+        curso = mysql.cursor(dictionary=True)
+        curso.execute("SELECT * FROM products WHERE id=%s", (q,))
+        products = curso.fetchall()
+        return render_template('view_product.html', x=x, tshirts=products)
+    elif 'order' in request.args:
+        product_id = request.args['order']
+        curso = mysql.cursor(dictionary=True)
+        curso.execute("SELECT * FROM products WHERE id=%s", (product_id,))
+        product = curso.fetchall()
+        x = content_based_filtering(product_id)
+        return render_template('order_product.html', x=x, tshirts=product, form=form)
+    return render_template('cus01.html', shoes=products, form=form)
+
+
+#TODO: DUPLICATE
+
+
 
 @app.route('/admin_login', methods=['GET', 'POST'])
 @not_admin_logged_in
