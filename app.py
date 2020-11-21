@@ -149,10 +149,12 @@ def index():
     belt = cur.fetchall()
     values = 'shoes'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
-    shoes = cur.fetchall()
+    values = 'bracelets'
+    cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
+    bracelets = cur.fetchall()
     # Close Connection
     cur.close()
-    return render_template('home.html', tshirt=tshirt, wallet=wallet, belt=belt, shoes=shoes, form=form)
+    return render_template('home.html', tshirt=tshirt, wallet=wallet, belt=belt, shoes=shoes, bracelets=brackets, form=form)
 
 
 class LoginForm(Form):  # Create Login Form
