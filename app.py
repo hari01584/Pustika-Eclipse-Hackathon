@@ -150,14 +150,37 @@ def index():
     values = 'shoes'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
     shoes = cur.fetchall()
+
+
+    #TODO: MULTIPLICATE
     values = 'cus01'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
     cus01 = cur.fetchall()
-    print("DEBUG:")
-    print(*cus01,sep='\n')
+    #TODO: MULTIPLICATE
+
+    values = 'cus02'
+    cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
+    cus02 = cur.fetchall()
+
+
+    values = 'cus03'
+    cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
+    cus03 = cur.fetchall()
+
+
+
+    values = 'cus04'
+    cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
+    cus04 = cur.fetchall()
+
+
+    values = 'cus05'
+    cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
+    cus05 = cur.fetchall()
+
     # Close Connection
     cur.close()
-    return render_template('home.html', tshirt=tshirt, wallet=wallet, belt=belt, shoes=shoes,cus01=cus01, form=form)
+    return render_template('home.html', tshirt=tshirt, wallet=wallet, belt=belt, shoes=shoes,cus01=cus01,cus02=cus02,cus03=cus03,cus04=cus04,cus05=cus05, form=form)
 
 
 class LoginForm(Form):  # Create Login Form
