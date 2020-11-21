@@ -303,8 +303,8 @@ def chatting(id):
 
         # lid name
         get_result = cur.execute("SELECT * FROM users WHERE id=%s", [id])
-        l_data = cur.fetchone()
-        if get_result > 0:
+        ldata = cur.fetchone()
+        if ldata:
             session['name'] = l_data['name']
             uid = session['uid']
             session['lid'] = id
