@@ -369,6 +369,7 @@ def sub01():
     values = 'sub01'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY id ASC", (values,))
     products = cur.fetchall()
+
     # Close Connection
     cur.close()
     if request.method == 'POST' and form.validate():
@@ -431,7 +432,7 @@ def sub01():
         product = curso.fetchall()
         x = content_based_filtering(product_id)
         return render_template('order_product.html', x=x, tshirts=product, form=form)
-    return render_template('sub01.html', tshirt=products, form=form)
+    return render_template('sub01.html', sub01=products, form=form)
 
 
 @app.route('/sub02', methods=['GET', 'POST'])
