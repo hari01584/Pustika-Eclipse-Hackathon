@@ -8,8 +8,8 @@
             <div class="list-group">
                 <a href="/sub01" class="list-group-item">sub01</a>
                 <a href="/sub02" class="list-group-item">sub02</a>
-                <a href="/belt" class="list-group-item">Belt</a>
-                <a href="/shoes" class="list-group-item">Shoes</a>
+                <a href="/sub03" class="list-group-item">sub03</a>
+                <a href="/sub04" class="list-group-item">sub04</a>
 				<!-- TODO: MULTIPLICATE THIS BLOCK -->
 				<a href="/cus01" class="list-group-item">cus01</a>
 				<!-- TODO: MULTIPLICATE THIS BLOCK -->
@@ -69,13 +69,13 @@
                 {% for product in cus03 %}
                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4">
                     <div class="card h-100">
-                        <a href="/shoes?view={{product.id}}">
+                        <a href="/sub04?view={{product.id}}">
                             <div class="card-img-top"
                                  style="background: url('static/image/product/{{product.category}}/{{product.picture}}'); background-repeat:no-repeat; background-size: cover; height:200px;width:100% "></div>
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="/shoes?view={{product.id}}">{{ product.pName}}</a>
+                                <a href="/sub04?view={{product.id}}">{{ product.pName}}</a>
                             </h5>
                             <h4>₹{{product.price}}</h4>
                         </div>
