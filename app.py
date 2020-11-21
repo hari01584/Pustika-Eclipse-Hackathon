@@ -667,7 +667,7 @@ def sub05():
         product = curso.fetchall()
         x = content_based_filtering(product_id)
         return render_template('order_product.html', x=x, tshirts=product, form=form)
-    return render_template('sub05.html', sub04=products, form=form)
+    return render_template('sub05.html', sub05=products, form=form)
 
 
 #TODO: DUPLICATE
