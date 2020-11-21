@@ -49,10 +49,10 @@
                                         {% else %}
                                         <option value="sub02">Mathematics</option>
                                         {% endif %}
-                                        {% if product.category == 'belt' %}
-                                        <option value="belt" selected>Belt</option>
+                                        {% if product.category == 'sub03' %}
+                                        <option value="sub03" selected>sub03</option>
                                         {% else %}
-                                        <option value="belt">Belt</option>
+                                        <option value="sub03">sub03</option>
                                         {% endif %}
 										<!-- TODO: MULTIPLICATE THIS BLOCK -->
                                         {% if product.category == 'shoes' %}
@@ -154,35 +154,35 @@
                                         </label>
                                     </div>
                                     {% endif %}
-                                    {% if product.category == 'belt' %}
-                                    <label>Level for Belt</label>
+                                    {% if product.category == 'sub03' %}
+                                    <label>Level for sub03</label>
                                     <div class="form-group">
                                         <label class="checkbox-inline">
                                             {% if product_level.leather == 'yes' %}
-                                            <input type="checkbox" checked name="belt" value="leather">Leather
+                                            <input type="checkbox" checked name="sub03" value="leather">Leather
                                             {% else%}
-                                            <input type="checkbox" name="belt" value="leather">Leather
+                                            <input type="checkbox" name="sub03" value="leather">Leather
                                             {% endif %}
                                         </label>
                                         <label class="checkbox-inline">
                                             {% if product_level.hook == 'yes' %}
-                                            <input type="checkbox" checked name="belt" value="hook">Hook
+                                            <input type="checkbox" checked name="sub03" value="hook">Hook
                                             {% else%}
-                                            <input type="checkbox" name="belt" value="hook">Hook
+                                            <input type="checkbox" name="sub03" value="hook">Hook
                                             {% endif %}
                                         </label>
                                         <label class="checkbox-inline">
                                             {% if product_level.color == 'yes' %}
-                                            <input type="checkbox" checked name="belt" value="color">Color
+                                            <input type="checkbox" checked name="sub03" value="color">Color
                                             {% else%}
-                                            <input type="checkbox" name="belt" value="color">Color
+                                            <input type="checkbox" name="sub03" value="color">Color
                                             {% endif %}
                                         </label>
                                         <label class="checkbox-inline">
                                             {% if product_level.design == 'yes' %}
-                                            <input type="checkbox" checked name="belt" value="design">Design
+                                            <input type="checkbox" checked name="sub03" value="design">Design
                                             {% else%}
-                                            <input type="checkbox" name="belt" value="design">Design
+                                            <input type="checkbox" name="sub03" value="design">Design
                                             {% endif %}
                                         </label>
                                     </div>
