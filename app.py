@@ -1,4 +1,6 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
+import pymysql
+pymysql.install_as_MySQLdb()
 from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, SelectField
 from passlib.hash import sha256_crypt
@@ -9,6 +11,12 @@ import datetime
 from flask_mail import Mail, Message
 import os
 from wtforms.fields.html5 import EmailField
+
+
+
+#import pymysql
+#pymysql.install_as_MySQLdb()
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
