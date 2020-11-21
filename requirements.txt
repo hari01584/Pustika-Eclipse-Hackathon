@@ -3,12 +3,11 @@ blinker
 Click
 Flask
 Flask-Mail
-Flask-MySQLdb
 Flask-Uploads
 itsdangerous
 Jinja2
 MarkupSafe
 passlib
-Werkzeug
 WTForms
 email-validator
+mysql-connector-python

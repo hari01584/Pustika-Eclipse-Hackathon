@@ -1,7 +1,7 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
-import pymysql
-pymysql.install_as_MySQLdb()
-from flask_mysqldb import MySQL
+#import pymysql
+#pymysql.install_as_MySQLdb()
+#from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, SelectField
 from passlib.hash import sha256_crypt
 from functools import wraps
@@ -12,7 +12,7 @@ from flask_mail import Mail, Message
 import os
 from wtforms.fields.html5 import EmailField
 
-
+import mysql.connector
 
 #import pymysql
 #pymysql.install_as_MySQLdb()
@@ -25,15 +25,24 @@ photos = UploadSet('photos', IMAGES)
 configure_uploads(app, photos)
 
 # Config MySQL
-mysql = MySQL()
-app.config['MYSQL_HOST'] = '127.0.0.1'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'pustika-bucket'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+#mysql = MySQL()
+#app.config['MYSQL_HOST'] = '127.0.0.1'
+#app.config['MYSQL_USER'] = 'root'
+#app.config['MYSQL_PASSWORD'] = ''
+#app.config['MYSQL_DB'] = 'pustika-bucket'
+#app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
+
+
+mysql = mysql.connector.connect(
+  host="127.0.0.1",
+  user="root",
+  password="",
+  database="pustika-bucket"
+)
 
 # Initialize the app for use with this MySQL class
-mysql.init_app(app)
+#mysql.init_app(app)
 
 
 def is_logged_in(f):
@@ -88,7 +97,7 @@ def wrappers(func, *args, **kwargs):
 
 
 def content_based_filtering(product_id):
-    cur = mysql.connection.cursor()
+    cur = mysql.cursor(dictionary=True)
     cur.execute("SELECT * FROM products WHERE id=%s", (product_id,))  # getting id row
     data = cur.fetchone()  # get row info
     data_cat = data['category']  # get id category ex shirt
@@ -113,7 +122,7 @@ def content_based_filtering(product_id):
                 recommend_id.append(f_level['product_id'])
     print('Total recommendation found: ' + str(recommend_id))
     if recommend_id:
-        cur = mysql.connection.cursor()
+        cur = mysql.cursor(dictionary=True)
         placeholders = ','.join((str(n) for n in recommend_id))
         query = 'SELECT * FROM products WHERE id IN (%s)' % placeholders
         cur.execute(query)
@@ -127,7 +136,7 @@ def content_based_filtering(product_id):
 def index():
     form = OrderForm(request.form)
     # Create cursor
-    cur = mysql.connection.cursor()
+    cur = mysql.cursor(dictionary=True)
     # Get message
     values = 'tshirt'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
@@ -165,7 +174,7 @@ def login():
         password_candidate = form.password.data
 
         # Create cursor
-        cur = mysql.connection.cursor()
+        cur = mysql.cursor(dictionary=True)
 
         # Get user by username
         result = cur.execute("SELECT * FROM users WHERE username=%s", [username])
@@ -204,7 +213,7 @@ def login():
 def logout():
     if 'uid' in session:
         # Create cursor
-        cur = mysql.connection.cursor()
+        cur = mysql.cursor(dictionary=True)
         uid = session['uid']
         x = '0'
         cur.execute("UPDATE users SET online=%s WHERE id=%s", (x, uid))
@@ -237,7 +246,7 @@ def register():
         mobile = form.mobile.data
 
         # Create Cursor
-        cur = mysql.connection.cursor()
+        cur = mysql.cursor(dictionary=True)
         cur.execute("INSERT INTO users(name, email, username, password, mobile) VALUES(%s, %s, %s, %s, %s)",
                     (name, email, username, password, mobile))
 
@@ -262,7 +271,7 @@ def chatting(id):
     if 'uid' in session:
         form = MessageForm(request.form)
         # Create cursor
-        cur = mysql.connection.cursor()
+        cur = mysql.cursor(dictionary=True)
 
         # lid name
         get_result = cur.execute("SELECT * FROM users WHERE id=%s", [id])
@@ -275,7 +284,7 @@ def chatting(id):
             if request.method == 'POST' and form.validate():
                 txt_body = form.body.data
                 # Create cursor
-                cur = mysql.connection.cursor()
+                cur = mysql.cursor(dictionary=True)
                 cur.execute("INSERT INTO messages(body, msg_by, msg_to) VALUES(%s, %s, %s)",
                             (txt_body, id, uid))
                 # Commit cursor
@@ -301,7 +310,7 @@ def chats():
         id = session['lid']
         uid = session['uid']
         # Create cursor
-        cur = mysql.connection.cursor()
+        cur = mysql.cursor(dictionary=True)
         # Get message
         cur.execute("SELECT * FROM messages WHERE (msg_by=%s AND msg_to=%s) OR (msg_by=%s AND msg_to=%s) "
                     "ORDER BY id ASC", (id, uid, uid, id))
@@ -327,7 +336,7 @@ class OrderForm(Form):  # Create Order Form
 def tshirt():
     form = OrderForm(request.form)
     # Create cursor
-    cur = mysql.connection.cursor()
+    cur = mysql.cursor(dictionary=True)
     # Get message
     values = 'tshirt'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY id ASC", (values,))
@@ -345,7 +354,7 @@ def tshirt():
         delivery_date = now + week
         now_time = delivery_date.strftime("%y-%m-%d %H:%M:%S")
         # Create Cursor
-        curs = mysql.connection.cursor()
+        curs = mysql.cursor(dictionary=True)
         if 'uid' in session:
             uid = session['uid']
             curs.execute("INSERT INTO orders(uid, pid, ofname, mobile, oplace, quantity, ddate) "
@@ -365,7 +374,7 @@ def tshirt():
         return render_template('tshirt.html', tshirt=products, form=form)
     if 'view' in request.args:
         product_id = request.args['view']
-        curso = mysql.connection.cursor()
+        curso = mysql.cursor(dictionary=True)
         curso.execute("SELECT * FROM products WHERE id=%s", (product_id,))
         product = curso.fetchall()
         x = content_based_filtering(product_id)
@@ -375,7 +384,7 @@ def tshirt():
         if 'uid' in session:
             uid = session['uid']
             # Create cursor
-            cur = mysql.connection.cursor()
+            cur = mysql.cursor(dictionary=True)
             cur.execute("SELECT * FROM product_view WHERE user_id=%s AND product_id=%s", (uid, product_id))
             result = cur.fetchall()
             if result:
@@ -389,7 +398,7 @@ def tshirt():
         return render_template('view_product.html', x=x, tshirts=product)
     elif 'order' in request.args:
         product_id = request.args['order']
-        curso = mysql.connection.cursor()
+        curso = mysql.cursor(dictionary=True)
         curso.execute("SELECT * FROM products WHERE id=%s", (product_id,))
         product = curso.fetchall()
         x = content_based_filtering(product_id)
@@ -401,7 +410,7 @@ def tshirt():
 def wallet():
     form = OrderForm(request.form)
     # Create cursor
-    cur = mysql.connection.cursor()
+    cur = mysql.cursor(dictionary=True)
     # Get message
     values = 'wallet'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY id ASC", (values,))
@@ -421,7 +430,7 @@ def wallet():
         delivery_date = now + week
         now_time = delivery_date.strftime("%y-%m-%d %H:%M:%S")
         # Create Cursor
-        curs = mysql.connection.cursor()
+        curs = mysql.cursor(dictionary=True)
         if 'uid' in session:
             uid = session['uid']
             curs.execute("INSERT INTO orders(uid, pid, ofname, mobile, oplace, quantity, ddate) "
@@ -442,13 +451,13 @@ def wallet():
         q = request.args['view']
         product_id = q
         x = content_based_filtering(product_id)
-        curso = mysql.connection.cursor()
+        curso = mysql.cursor(dictionary=True)
         curso.execute("SELECT * FROM products WHERE id=%s", (q,))
         products = curso.fetchall()
         return render_template('view_product.html', x=x, tshirts=products)
     elif 'order' in request.args:
         product_id = request.args['order']
-        curso = mysql.connection.cursor()
+        curso = mysql.cursor(dictionary=True)
         curso.execute("SELECT * FROM products WHERE id=%s", (product_id,))
         product = curso.fetchall()
         x = content_based_filtering(product_id)
@@ -460,7 +469,7 @@ def wallet():
 def belt():
     form = OrderForm(request.form)
     # Create cursor
-    cur = mysql.connection.cursor()
+    cur = mysql.cursor(dictionary=True)
     # Get message
     values = 'belt'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY id ASC", (values,))
@@ -479,7 +488,7 @@ def belt():
         delivery_date = now + week
         now_time = delivery_date.strftime("%y-%m-%d %H:%M:%S")
         # Create Cursor
-        curs = mysql.connection.cursor()
+        curs = mysql.cursor(dictionary=True)
         if 'uid' in session:
             uid = session['uid']
             curs.execute("INSERT INTO orders(uid, pid, ofname, mobile, oplace, quantity, ddate) "
@@ -502,13 +511,13 @@ def belt():
         q = request.args['view']
         product_id = q
         x = content_based_filtering(product_id)
-        curso = mysql.connection.cursor()
+        curso = mysql.cursor(dictionary=True)
         curso.execute("SELECT * FROM products WHERE id=%s", (q,))
         products = curso.fetchall()
         return render_template('view_product.html', x=x, tshirts=products)
     elif 'order' in request.args:
         product_id = request.args['order']
-        curso = mysql.connection.cursor()
+        curso = mysql.cursor(dictionary=True)
         curso.execute("SELECT * FROM products WHERE id=%s", (product_id,))
         product = curso.fetchall()
         x = content_based_filtering(product_id)
@@ -520,7 +529,7 @@ def belt():
 def shoes():
     form = OrderForm(request.form)
     # Create cursor
-    cur = mysql.connection.cursor()
+    cur = mysql.cursor(dictionary=True)
     # Get message
     values = 'shoes'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY id ASC", (values,))
@@ -539,7 +548,7 @@ def shoes():
         delivery_date = now + week
         now_time = delivery_date.strftime("%y-%m-%d %H:%M:%S")
         # Create Cursor
-        curs = mysql.connection.cursor()
+        curs = mysql.cursor(dictionary=True)
         if 'uid' in session:
             uid = session['uid']
             curs.execute("INSERT INTO orders(uid, pid, ofname, mobile, oplace, quantity, ddate) "
@@ -560,13 +569,13 @@ def shoes():
         q = request.args['view']
         product_id = q
         x = content_based_filtering(product_id)
-        curso = mysql.connection.cursor()
+        curso = mysql.cursor(dictionary=True)
         curso.execute("SELECT * FROM products WHERE id=%s", (q,))
         products = curso.fetchall()
         return render_template('view_product.html', x=x, tshirts=products)
     elif 'order' in request.args:
         product_id = request.args['order']
-        curso = mysql.connection.cursor()
+        curso = mysql.cursor(dictionary=True)
         curso.execute("SELECT * FROM products WHERE id=%s", (product_id,))
         product = curso.fetchall()
         x = content_based_filtering(product_id)
@@ -583,7 +592,7 @@ def admin_login():
         password_candidate = request.form['password']
 
         # Create cursor
-        cur = mysql.connection.cursor()
+        cur = mysql.cursor(dictionary=True)
 
         # Get user by username
         result = cur.execute("SELECT * FROM admin WHERE email=%s", [username])
@@ -627,7 +636,7 @@ def admin_logout():
 @app.route('/admin')
 @is_admin_logged_in
 def admin():
-    curso = mysql.connection.cursor()
+    curso = mysql.cursor(dictionary=True)
     num_rows = curso.execute("SELECT * FROM products")
     result = curso.fetchall()
     order_rows = curso.execute("SELECT * FROM orders")
@@ -639,7 +648,7 @@ def admin():
 @app.route('/orders')
 @is_admin_logged_in
 def orders():
-    curso = mysql.connection.cursor()
+    curso = mysql.cursor(dictionary=True)
     num_rows = curso.execute("SELECT * FROM products")
     order_rows = curso.execute("SELECT * FROM orders")
     result = curso.fetchall()
@@ -651,7 +660,7 @@ def orders():
 @app.route('/users')
 @is_admin_logged_in
 def users():
-    curso = mysql.connection.cursor()
+    curso = mysql.cursor(dictionary=True)
     num_rows = curso.execute("SELECT * FROM products")
     order_rows = curso.execute("SELECT * FROM orders")
     users_rows = curso.execute("SELECT * FROM users")
@@ -680,7 +689,7 @@ def admin_add_product():
                 save_photo = photos.save(file, folder=category)
                 if save_photo:
                     # Create Cursor
-                    curs = mysql.connection.cursor()
+                    curs = mysql.cursor(dictionary=True)
                     curs.execute("INSERT INTO products(pName,price,description,available,category,item,pCode,picture)"
                                  "VALUES(%s, %s, %s, %s, %s, %s, %s, %s)",
                                  (name, price, description, available, category, item, code, picture))
@@ -745,7 +754,7 @@ def admin_add_product():
 def edit_product():
     if 'id' in request.args:
         product_id = request.args['id']
-        curso = mysql.connection.cursor()
+        curso = mysql.cursor(dictionary=True)
         res = curso.execute("SELECT * FROM products WHERE id=%s", (product_id,))
         product = curso.fetchall()
         curso.execute("SELECT * FROM product_level WHERE product_id=%s", (product_id,))
@@ -770,7 +779,7 @@ def edit_product():
                         save_photo = photos.save(file, folder=category)
                         if save_photo:
                             # Create Cursor
-                            cur = mysql.connection.cursor()
+                            cur = mysql.cursor(dictionary=True)
                             exe = curso.execute(
                                 "UPDATE products SET pName=%s, price=%s, description=%s, available=%s, category=%s, item=%s, pCode=%s, picture=%s WHERE id=%s",
                                 (name, price, description, available, category, item, code, picture, product_id))
@@ -845,7 +854,7 @@ def search():
     if 'q' in request.args:
         q = request.args['q']
         # Create cursor
-        cur = mysql.connection.cursor()
+        cur = mysql.cursor(dictionary=True)
         # Get message
         query_string = "SELECT * FROM products WHERE pName LIKE %s ORDER BY id ASC"
         cur.execute(query_string, ('%' + q + '%',))
@@ -864,7 +873,7 @@ def search():
 def profile():
     if 'user' in request.args:
         q = request.args['user']
-        curso = mysql.connection.cursor()
+        curso = mysql.cursor(dictionary=True)
         curso.execute("SELECT * FROM users WHERE id=%s", (q,))
         result = curso.fetchone()
         if result:
@@ -899,7 +908,7 @@ def settings():
     form = UpdateRegisterForm(request.form)
     if 'user' in request.args:
         q = request.args['user']
-        curso = mysql.connection.cursor()
+        curso = mysql.cursor(dictionary=True)
         curso.execute("SELECT * FROM users WHERE id=%s", (q,))
         result = curso.fetchone()
         if result:
@@ -911,7 +920,7 @@ def settings():
                     mobile = form.mobile.data
 
                     # Create Cursor
-                    cur = mysql.connection.cursor()
+                    cur = mysql.cursor(dictionary=True)
                     exe = cur.execute("UPDATE users SET name=%s, email=%s, password=%s, mobile=%s WHERE id=%s",
                                       (name, email, password, mobile, q))
                     if exe:
@@ -941,7 +950,7 @@ def developer():
     form = DeveloperForm(request.form)
     if request.method == 'POST' and form.validate():
         q = form.id.data
-        curso = mysql.connection.cursor()
+        curso = mysql.cursor(dictionary=True)
         result = curso.execute("SELECT * FROM products WHERE id=%s", (q,))
         if result > 0:
             x = content_based_filtering(q)
