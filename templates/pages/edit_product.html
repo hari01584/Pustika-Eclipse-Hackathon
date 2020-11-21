@@ -44,10 +44,10 @@
                                         {% else %}
                                         <option value="sub01">sub01</option>
                                         {% endif %}
-                                        {% if product.category == 'wallet' %}
-                                        <option value="wallet" selected>Wallet</option>
+                                        {% if product.category == 'sub02' %}
+                                        <option value="sub02" selected>sub02</option>
                                         {% else %}
-                                        <option value="wallet">Wallet</option>
+                                        <option value="sub02">sub02</option>
                                         {% endif %}
                                         {% if product.category == 'belt' %}
                                         <option value="belt" selected>Belt</option>
@@ -128,28 +128,28 @@
                                         </label>
                                     </div>
                                     {% endif %}
-                                    {% if product.category == 'wallet' %}
-                                    <label>Level for Wallet</label>
+                                    {% if product.category == 'sub02' %}
+                                    <label>Level for sub02</label>
                                     <div class="form-group">
                                         <label class="checkbox-inline">
                                             {% if product_level.chain == 'yes' %}
-                                            <input type="checkbox" checked name="wallet" value="chain">Chain
+                                            <input type="checkbox" checked name="sub02" value="chain">Chain
                                             {% else%}
-                                            <input type="checkbox" name="wallet" value="chain">Chain
+                                            <input type="checkbox" name="sub02" value="chain">Chain
                                             {% endif %}
                                         </label>
                                         <label class="checkbox-inline">
                                             {% if product_level.leather == 'yes' %}
-                                            <input type="checkbox" checked name="wallet" value="leather">Leather
+                                            <input type="checkbox" checked name="sub02" value="leather">Leather
                                             {% else%}
-                                            <input type="checkbox" name="wallet" value="leather">Leather
+                                            <input type="checkbox" name="sub02" value="leather">Leather
                                             {% endif %}
                                         </label>
                                         <label class="checkbox-inline">
                                             {% if product_level.design == 'yes' %}
-                                            <input type="checkbox" checked name="wallet" value="design">Design
+                                            <input type="checkbox" checked name="sub02" value="design">Design
                                             {% else%}
-                                            <input type="checkbox" name="wallet" value="design">Design
+                                            <input type="checkbox" name="sub02" value="design">Design
                                             {% endif %}
                                         </label>
                                     </div>
