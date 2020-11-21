@@ -19,6 +19,10 @@ import mysql.connector
 
 
 app = Flask(__name__)
+
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0   #TODO: REMOVE THIS
+
+
 app.secret_key = os.urandom(24)
 app.config['UPLOADED_PHOTOS_DEST'] = 'static/image/product'
 photos = UploadSet('photos', IMAGES)
