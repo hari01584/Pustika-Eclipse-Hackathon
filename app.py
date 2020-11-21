@@ -926,6 +926,7 @@ def admin_login():
         # Get user by username
         result = cur.execute("SELECT * FROM admin WHERE email=%s", [username])
         data = cur.fetchone()
+        #print(*data,sep='/n')
         if data:
             # Get stored value
             
