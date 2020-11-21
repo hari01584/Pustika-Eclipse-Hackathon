@@ -1161,7 +1161,7 @@ def edit_product():
                                 "UPDATE products SET pName=%s, price=%s, description=%s, available=%s, category=%s, item=%s, pCode=%s, picture=%s WHERE id=%s",
                                 (name, price, description, available, category, item, code, picture, product_id))
                             print("DEBUG LEVEL 1 WORKINGGGG") 
-                            if dat:
+                            if True:
                                 print("DEBUG LEVEL 2 WORKINGGGG") 
                                 if category == 'tshirt':
                                     level = request.form.getlist('tshirt')
