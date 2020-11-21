@@ -40,7 +40,7 @@
                                     <select class="form-control" id="category_id" onchange="populateList();"
                                             name="category">
                                         {% if product.category == 'sub01' %}
-                                        <option value="sub01" selected>Computer Science</option>
+                                        <option value="sub01" selected>Computer ₹</option>
                                         {% else %}
                                         <option value="sub01">Computer Science</option>
                                         {% endif %}
@@ -50,33 +50,33 @@
                                         <option value="sub02">Mathematics</option>
                                         {% endif %}
                                         {% if product.category == 'sub03' %}
-                                        <option value="sub03" selected>sub03</option>
+                                        <option value="sub03" selected>Electrical</option>
                                         {% else %}
-                                        <option value="sub03">sub03</option>
+                                        <option value="sub03">Electrical</option>
                                         {% endif %}
 										<!-- TODO: MULTIPLICATE THIS BLOCK -->
                                         {% if product.category == 'sub04' %}
-                                        <option value="sub04" selected>sub04</option>
+                                        <option value="sub04" selected>Mechanical</option>
                                         {% else %}
-                                        <option value="sub04">sub04</option>
+                                        <option value="sub04">Mechanical</option>
                                         {% endif %}
 										<!-- TODO: MULTIPLICATE THIS BLOCK -->
-										{% if product.category == 'cus01' %}
-                                        <option value="cus01" selected>cus01</option>
+										{% if product.category == 'sub05' %}
+                                        <option value="sub05" selected>Chemistry</option>
                                         {% else %}
-                                        <option value="cus01">cus01</option>
+                                        <option value="sub05">Chemistry</option>
                                         {% endif %}
 
-										{% if product.category == 'cus02' %}
-                                        <option value="cus02" selected>cus02</option>
+										{% if product.category == 'sub06' %}
+                                        <option value="sub06" selected>Energy And Environment</option>
                                         {% else %}
-                                        <option value="cus02">cus02</option>
+                                        <option value="sub06">Energy And Environment</option>
                                         {% endif %}
 										
-										{% if product.category == 'cus03' %}
-                                        <option value="cus03" selected>cus03</option>
+										{% if product.category == 'sub07' %}
+                                        <option value="sub07" selected>Elective</option>
                                         {% else %}
-                                        <option value="cus03">cus03</option>
+                                        <option value="sub07">Elective</option>
                                         {% endif %}
 										
 										{% if product.category == 'cus04' %}
