@@ -136,7 +136,7 @@ def content_based_filtering(product_id):
 def index():
     form = OrderForm(request.form)
     # Create cursor
-    cur = mysql.cursor(dictionary=True)
+    cur = mysql.cursor(buffered=True,dictionary=True)
     # Get message
     values = 'tshirt'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
@@ -149,12 +149,10 @@ def index():
     belt = cur.fetchall()
     values = 'shoes'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
-    values = 'bracelets'
-    cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
-    bracelets = cur.fetchall()
+    shoes = cur.fetchall()
     # Close Connection
     cur.close()
-    return render_template('home.html', tshirt=tshirt, wallet=wallet, belt=belt, shoes=shoes, bracelets=brackets, form=form)
+    return render_template('home.html', tshirt=tshirt, wallet=wallet, belt=belt, shoes=shoes, form=form)
 
 
 class LoginForm(Form):  # Create Login Form
