@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 --
 
 INSERT INTO `products` (`id`, `pName`, `price`, `description`, `available`, `category`, `item`, `pCode`, `picture`, `date`) VALUES
-(25, 'Hilfiger', 700, 'Branded', 1, 'tshirt', 'tshirt', 'cus01', '4.jpg', '2020-11-21 13:13:37');
+(25, 'Hilfiger', 700, 'Branded', 1, 'sub01', 'sub01', 'cus01', '4.jpg', '2020-11-21 13:13:37');
 
 -- --------------------------------------------------------
 
