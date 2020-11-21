@@ -55,10 +55,10 @@
                                         <option value="sub03">sub03</option>
                                         {% endif %}
 										<!-- TODO: MULTIPLICATE THIS BLOCK -->
-                                        {% if product.category == 'shoes' %}
-                                        <option value="shoes" selected>Shoes</option>
+                                        {% if product.category == 'sub04' %}
+                                        <option value="sub04" selected>sub04</option>
                                         {% else %}
-                                        <option value="shoes">Shoes</option>
+                                        <option value="sub04">sub04</option>
                                         {% endif %}
 										<!-- TODO: MULTIPLICATE THIS BLOCK -->
 										{% if product.category == 'cus01' %}
@@ -187,35 +187,35 @@
                                         </label>
                                     </div>
                                     {% endif %}
-                                    {% if product.category == 'shoes' %}
-                                    <label>Level for Shoes</label>
+                                    {% if product.category == 'sub04' %}
+                                    <label>Level for sub04</label>
                                     <div class="form-group">
                                         <label class="checkbox-inline">
                                             {% if product_level.formal == 'yes' %}
-                                            <input type="checkbox" checked name="shoes" value="formal">Formal
+                                            <input type="checkbox" checked name="sub04" value="formal">Formal
                                             {% else%}
-                                            <input type="checkbox" name="shoes" value="formal">Formal
+                                            <input type="checkbox" name="sub04" value="formal">Formal
                                             {% endif %}
                                         </label>
                                         <label class="checkbox-inline">
                                             {% if product_level.converse == 'yes' %}
-                                            <input type="checkbox" checked name="shoes" value="converse">Converse
+                                            <input type="checkbox" checked name="sub04" value="converse">Converse
                                             {% else%}
-                                            <input type="checkbox" name="shoes" value="converse">Converse
+                                            <input type="checkbox" name="sub04" value="converse">Converse
                                             {% endif %}
                                         </label>
                                         <label class="checkbox-inline">
                                             {% if product_level.loafer == 'yes' %}
-                                            <input type="checkbox" checked name="shoes" value="loafer">Loafer
+                                            <input type="checkbox" checked name="sub04" value="loafer">Loafer
                                             {% else%}
-                                            <input type="checkbox" name="shoes" value="loafer">Loafer
+                                            <input type="checkbox" name="sub04" value="loafer">Loafer
                                             {% endif %}
                                         </label>
                                         <label class="checkbox-inline">
                                             {% if product_level.leather == 'yes' %}
-                                            <input type="checkbox" name="shoes" checked value="leather">Leather
+                                            <input type="checkbox" name="sub04" checked value="leather">Leather
                                             {% else%}
-                                            <input type="checkbox" name="shoes" value="leather">Leather
+                                            <input type="checkbox" name="sub04" value="leather">Leather
                                             {% endif %}
                                         </label>
                                     </div>
@@ -224,7 +224,7 @@
                                 {% endfor %}
                                 <div class="form-group">
                                     <label>Item</label>
-                                    <input class="form-control" required="required" name="item" value="{{product.item}}" placeholder="Ex: watch/shoes">
+                                    <input class="form-control" required="required" name="item" value="{{product.item}}" placeholder="Ex: watch/sub04">
                                 </div>
                                 <div class="form-group">
                                     <label>Product Code</label>
