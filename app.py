@@ -138,9 +138,9 @@ def index():
     # Create cursor
     cur = mysql.cursor(buffered=True,dictionary=True)
     # Get message
-    values = 'tshirt'
+    values = 'sub01'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
-    tshirt = cur.fetchall()
+    sub01 = cur.fetchall()
     values = 'wallet'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY RAND() LIMIT 4", (values,))
     wallet = cur.fetchall()
@@ -180,7 +180,7 @@ def index():
 
     # Close Connection
     cur.close()
-    return render_template('home.html', tshirt=tshirt, wallet=wallet, belt=belt, shoes=shoes,cus01=cus01,cus02=cus02,cus03=cus03,cus04=cus04,cus05=cus05, form=form)
+    return render_template('home.html', sub01=sub01, wallet=wallet, belt=belt, shoes=shoes,cus01=cus01,cus02=cus02,cus03=cus03,cus04=cus04,cus05=cus05, form=form)
 
 
 class LoginForm(Form):  # Create Login Form
@@ -360,13 +360,13 @@ class OrderForm(Form):  # Create Order Form
                               render_kw={'placeholder': 'Order Place'})
 
 
-@app.route('/tshirt', methods=['GET', 'POST'])
-def tshirt():
+@app.route('/sub01', methods=['GET', 'POST'])
+def sub01():
     form = OrderForm(request.form)
     # Create cursor
     cur = mysql.cursor(dictionary=True)
     # Get message
-    values = 'tshirt'
+    values = 'sub01'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY id ASC", (values,))
     products = cur.fetchall()
     # Close Connection
@@ -399,7 +399,7 @@ def tshirt():
         cur.close()
 
         flash('Order successful', 'success')
-        return render_template('tshirt.html', tshirt=products, form=form)
+        return render_template('sub01.html', tshirt=products, form=form)
     if 'view' in request.args:
         product_id = request.args['view']
         curso = mysql.cursor(dictionary=True)
@@ -431,7 +431,7 @@ def tshirt():
         product = curso.fetchall()
         x = content_based_filtering(product_id)
         return render_template('order_product.html', x=x, tshirts=product, form=form)
-    return render_template('tshirt.html', tshirt=products, form=form)
+    return render_template('sub01.html', tshirt=products, form=form)
 
 
 @app.route('/wallet', methods=['GET', 'POST'])
@@ -1026,8 +1026,8 @@ def admin_add_product():
                     mysql.commit()
                     product_id = curs.lastrowid
                     curs.execute("INSERT INTO product_level(product_id)" "VALUES(%s)", [product_id])
-                    if category == 'tshirt':
-                        level = request.form.getlist('tshirt')
+                    if category == 'sub01':
+                        level = request.form.getlist('sub01')
                         for lev in level:
                             yes = 'yes'
                             query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(field=lev)
@@ -1164,8 +1164,8 @@ def edit_product():
                             print("DEBUG LEVEL 1 WORKINGGGG") 
                             if True:
                                 print("DEBUG LEVEL 2 WORKINGGGG") 
-                                if category == 'tshirt':
-                                    level = request.form.getlist('tshirt')
+                                if category == 'sub01':
+                                    level = request.form.getlist('sub01')
                                     for lev in level:
                                         yes = 'yes'
                                         query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(

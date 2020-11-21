@@ -39,10 +39,10 @@
                                     <label>Category</label>
                                     <select class="form-control" id="category_id" onchange="populateList();"
                                             name="category">
-                                        {% if product.category == 'tshirt' %}
-                                        <option value="tshirt" selected>T-Shirt</option>
+                                        {% if product.category == 'sub01' %}
+                                        <option value="sub01" selected>sub01</option>
                                         {% else %}
-                                        <option value="tshirt">T-Shirt</option>
+                                        <option value="sub01">sub01</option>
                                         {% endif %}
                                         {% if product.category == 'wallet' %}
                                         <option value="wallet" selected>Wallet</option>
@@ -95,35 +95,35 @@
                                 </div>
                                 {% for product_level in product_level %}
                                 <div class="form-group level-container">
-                                    {% if product.category == 'tshirt' %}
-                                    <label>level for T-shirt</label>
+                                    {% if product.category == 'sub01' %}
+                                    <label>level for sub01</label>
                                     <div class="form-group">
                                         <label class="checkbox-inline active">
                                             {% if product_level.v_shape == 'yes' %}
-                                            <input type="checkbox" checked name="tshirt" value="v_shape">V-Shape
+                                            <input type="checkbox" checked name="sub01" value="v_shape">V-Shape
                                             {% else%}
-                                            <input type="checkbox" name="tshirt" value="v_shape">V-Shape
+                                            <input type="checkbox" name="sub01" value="v_shape">V-Shape
                                             {% endif %}
                                         </label>
                                         <label class="checkbox-inline">
                                             {% if product_level.polo == 'yes' %}
-                                            <input type="checkbox" checked name="tshirt" value="polo">Polo T-shirt
+                                            <input type="checkbox" checked name="sub01" value="polo">Polo sub01
                                             {% else%}
-                                            <input type="checkbox" name="tshirt" value="polo">Polo T-shirt
+                                            <input type="checkbox" name="sub01" value="polo">Polo sub01
                                             {% endif %}
                                         </label>
                                         <label class="checkbox-inline">
                                             {% if product_level.clean_text == 'yes' %}
-                                            <input type="checkbox" checked name="tshirt" value="clean_text">Clean Text
+                                            <input type="checkbox" checked name="sub01" value="clean_text">Clean Text
                                             {% else%}
-                                            <input type="checkbox" name="tshirt" value="clean_text">Clean Text
+                                            <input type="checkbox" name="sub01" value="clean_text">Clean Text
                                             {% endif %}
                                         </label>
                                         <label class="checkbox-inline">
                                             {% if product_level.design == 'yes' %}
-                                            <input type="checkbox" checked name="tshirt" value="design">Colorful Design
+                                            <input type="checkbox" checked name="sub01" value="design">Colorful Design
                                             {% else%}
-                                            <input type="checkbox" name="tshirt" value="design">Colorful Design
+                                            <input type="checkbox" name="sub01" value="design">Colorful Design
                                             {% endif %}
                                         </label>
                                     </div>
