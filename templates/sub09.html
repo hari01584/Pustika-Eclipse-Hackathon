@@ -4,19 +4,19 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
-            <h1 class="my-4">sub05</h1>
+            <h1 class="my-4">sub09</h1>
             <div class="list-group">
                 <a href="/sub01" class="list-group-item">Computer Science</a>
                 <a href="/sub02" class="list-group-item">Mathematics</a>
                 <a href="/sub03" class="list-group-item">Electrical</a>
                 <a href="/sub04" class="list-group-item">Mechanical</a>
 				<!-- TODO: MULTIPLICATE THIS BLOCK -->
-				<a href="/sub05" class="list-group-item active">Chemistry</a>
+				<a href="/sub05" class="list-group-item">Chemistry</a>
 				<!-- TODO: MULTIPLICATE THIS BLOCK -->
 				<a href="/sub06" class="list-group-item">Energy And Environment</a>
 				<a href="/sub07" class="list-group-item">Elective</a>
 				<a href="/sub08" class="list-group-item">Extra</a>
-				<a href="/sub09" class="list-group-item">Novels</a>
+				<a href="/sub09" class="list-group-item active">Novels</a>
             </div>
         </div>
         
@@ -66,7 +66,7 @@
             </div>
 
             <div class="row">
-                {% for product in sub05 %}
+                {% for product in sub08 %}
                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4">
                     <div class="card h-100">
                         <a href="/sub04?view={{product.id}}">
