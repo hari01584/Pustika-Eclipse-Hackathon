@@ -681,6 +681,7 @@ def cus02():
     values = 'cus02'
     cur.execute("SELECT * FROM products WHERE category=%s ORDER BY id ASC", (values,))
     products = cur.fetchall()
+
     # Close Connection
     cur.close()
 
@@ -727,7 +728,7 @@ def cus02():
         product = curso.fetchall()
         x = content_based_filtering(product_id)
         return render_template('order_product.html', x=x, tshirts=product, form=form)
-    return render_template('cus02.html', shoes=products, form=form)
+    return render_template('cus02.html', cus02=products, form=form)
 
 
 
@@ -786,7 +787,7 @@ def cus03():
         product = curso.fetchall()
         x = content_based_filtering(product_id)
         return render_template('order_product.html', x=x, tshirts=product, form=form)
-    return render_template('cus03.html', shoes=products, form=form)
+    return render_template('cus03.html', cus03=products, form=form)
 
 
 
@@ -845,7 +846,7 @@ def cus04():
         product = curso.fetchall()
         x = content_based_filtering(product_id)
         return render_template('order_product.html', x=x, tshirts=product, form=form)
-    return render_template('cus04.html', shoes=products, form=form)
+    return render_template('cus04.html', cus04=products, form=form)
 
 
 
@@ -905,7 +906,7 @@ def cus05():
         product = curso.fetchall()
         x = content_based_filtering(product_id)
         return render_template('order_product.html', x=x, tshirts=product, form=form)
-    return render_template('cus05.html', shoes=products, form=form)
+    return render_template('cus05.html', cus05=products, form=form)
 
 
 
@@ -1050,6 +1051,54 @@ def admin_add_product():
                             mysql.commit()
                     elif category == 'shoes':
                         level = request.form.getlist('shoes')
+                        for lev in level:
+                            yes = 'yes'
+                            query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(field=lev)
+                            curs.execute(query, (yes, product_id))
+                            # Commit cursor
+                            mysql.commit()
+                    elif category == 'shoes':       #TODO: DUPLICATE
+                        level = request.form.getlist('shoes')
+                        for lev in level:
+                            yes = 'yes'
+                            query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(field=lev)
+                            curs.execute(query, (yes, product_id))
+                            # Commit cursor
+                            mysql.commit()
+                    elif category == 'cus01':
+                        level = request.form.getlist('cus01')
+                        for lev in level:
+                            yes = 'yes'
+                            query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(field=lev)
+                            curs.execute(query, (yes, product_id))
+                            # Commit cursor
+                            mysql.commit()
+                    elif category == 'cus02':
+                        level = request.form.getlist('cus02')
+                        for lev in level:
+                            yes = 'yes'
+                            query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(field=lev)
+                            curs.execute(query, (yes, product_id))
+                            # Commit cursor
+                            mysql.commit()
+                    elif category == 'cus03':
+                        level = request.form.getlist('cus03')
+                        for lev in level:
+                            yes = 'yes'
+                            query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(field=lev)
+                            curs.execute(query, (yes, product_id))
+                            # Commit cursor
+                            mysql.commit()
+                    elif category == 'cus04':
+                        level = request.form.getlist('cus04')
+                        for lev in level:
+                            yes = 'yes'
+                            query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(field=lev)
+                            curs.execute(query, (yes, product_id))
+                            # Commit cursor
+                            mysql.commit()
+                    elif category == 'cus05':
+                        level = request.form.getlist('cus05')
                         for lev in level:
                             yes = 'yes'
                             query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(field=lev)
