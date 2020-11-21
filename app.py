@@ -174,14 +174,14 @@ def login():
         password_candidate = form.password.data
 
         # Create cursor
-        cur = mysql.cursor(dictionary=True)
+        
+        cur = mysql.cursor(buffered=True,dictionary=True)
 
         # Get user by username
         result = cur.execute("SELECT * FROM users WHERE username=%s", [username])
-
-        if result > 0:
+        data = cur.fetchone()
+        if data:
             # Get stored value
-            data = cur.fetchone()
             password = data['password']
             uid = data['id']
             name = data['name']
@@ -251,7 +251,7 @@ def register():
                     (name, email, username, password, mobile))
 
         # Commit cursor
-        mysql.connection.commit()
+        mysql.commit()
 
         # Close Connection
         cur.close()
@@ -288,7 +288,7 @@ def chatting(id):
                 cur.execute("INSERT INTO messages(body, msg_by, msg_to) VALUES(%s, %s, %s)",
                             (txt_body, id, uid))
                 # Commit cursor
-                mysql.connection.commit()
+                mysql.commit()
 
             # Get users
             cur.execute("SELECT * FROM users")
@@ -365,7 +365,7 @@ def tshirt():
                          "VALUES(%s, %s, %s, %s, %s, %s)",
                          (pid, name, mobile, order_place, quantity, now_time))
         # Commit cursor
-        mysql.connection.commit()
+        mysql.commit()
 
         # Close Connection
         cur.close()
@@ -394,7 +394,7 @@ def tshirt():
                             (now_time, uid, product_id))
             else:
                 cur.execute("INSERT INTO product_view(user_id, product_id) VALUES(%s, %s)", (uid, product_id))
-                mysql.connection.commit()
+                mysql.commit()
         return render_template('view_product.html', x=x, tshirts=product)
     elif 'order' in request.args:
         product_id = request.args['order']
@@ -441,7 +441,7 @@ def wallet():
                          "VALUES(%s, %s, %s, %s, %s, %s)",
                          (pid, name, mobile, order_place, quantity, now_time))
         # Commit cursor
-        mysql.connection.commit()
+        mysql.commit()
         # Close Connection
         cur.close()
 
@@ -500,7 +500,7 @@ def belt():
                          (pid, name, mobile, order_place, quantity, now_time))
 
         # Commit cursor
-        mysql.connection.commit()
+        mysql.commit()
 
         # Close Connection
         cur.close()
@@ -559,7 +559,7 @@ def shoes():
                          "VALUES(%s, %s, %s, %s, %s, %s)",
                          (pid, name, mobile, order_place, quantity, now_time))
         # Commit cursor
-        mysql.connection.commit()
+        mysql.commit()
         # Close Connection
         cur.close()
 
@@ -693,7 +693,7 @@ def admin_add_product():
                     curs.execute("INSERT INTO products(pName,price,description,available,category,item,pCode,picture)"
                                  "VALUES(%s, %s, %s, %s, %s, %s, %s, %s)",
                                  (name, price, description, available, category, item, code, picture))
-                    mysql.connection.commit()
+                    mysql.commit()
                     product_id = curs.lastrowid
                     curs.execute("INSERT INTO product_level(product_id)" "VALUES(%s)", [product_id])
                     if category == 'tshirt':
@@ -703,7 +703,7 @@ def admin_add_product():
                             query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(field=lev)
                             curs.execute(query, (yes, product_id))
                             # Commit cursor
-                            mysql.connection.commit()
+                            mysql.commit()
                     elif category == 'wallet':
                         level = request.form.getlist('wallet')
                         for lev in level:
@@ -711,7 +711,7 @@ def admin_add_product():
                             query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(field=lev)
                             curs.execute(query, (yes, product_id))
                             # Commit cursor
-                            mysql.connection.commit()
+                            mysql.commit()
                     elif category == 'belt':
                         level = request.form.getlist('belt')
                         for lev in level:
@@ -719,7 +719,7 @@ def admin_add_product():
                             query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(field=lev)
                             curs.execute(query, (yes, product_id))
                             # Commit cursor
-                            mysql.connection.commit()
+                            mysql.commit()
                     elif category == 'shoes':
                         level = request.form.getlist('shoes')
                         for lev in level:
@@ -727,7 +727,7 @@ def admin_add_product():
                             query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(field=lev)
                             curs.execute(query, (yes, product_id))
                             # Commit cursor
-                            mysql.connection.commit()
+                            mysql.commit()
                     else:
                         flash('Product level not fund', 'danger')
                         return redirect(url_for('admin_add_product'))
@@ -792,7 +792,7 @@ def edit_product():
                                             field=lev)
                                         cur.execute(query, (yes, product_id))
                                         # Commit cursor
-                                        mysql.connection.commit()
+                                        mysql.commit()
                                 elif category == 'wallet':
                                     level = request.form.getlist('wallet')
                                     for lev in level:
@@ -801,7 +801,7 @@ def edit_product():
                                             field=lev)
                                         cur.execute(query, (yes, product_id))
                                         # Commit cursor
-                                        mysql.connection.commit()
+                                        mysql.commit()
                                 elif category == 'belt':
                                     level = request.form.getlist('belt')
                                     for lev in level:
@@ -810,7 +810,7 @@ def edit_product():
                                             field=lev)
                                         cur.execute(query, (yes, product_id))
                                         # Commit cursor
-                                        mysql.connection.commit()
+                                        mysql.commit()
                                 elif category == 'shoes':
                                     level = request.form.getlist('shoes')
                                     for lev in level:
@@ -819,7 +819,7 @@ def edit_product():
                                             field=lev)
                                         cur.execute(query, (yes, product_id))
                                         # Commit cursor
-                                        mysql.connection.commit()
+                                        mysql.commit()
                                 else:
                                     flash('Product level not fund', 'danger')
                                     return redirect(url_for('admin_add_product'))
