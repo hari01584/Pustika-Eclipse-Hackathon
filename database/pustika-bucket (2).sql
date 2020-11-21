@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 21, 2020 at 01:18 PM
+-- Generation Time: Nov 21, 2020 at 04:12 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -107,14 +107,18 @@ CREATE TABLE IF NOT EXISTS `products` (
   `picture` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `pName`, `price`, `description`, `available`, `category`, `item`, `pCode`, `picture`, `date`) VALUES
-(25, 'Hilfiger', 700, 'Branded', 1, 'sub01', 'sub01', 'cus01', '4.jpg', '2020-11-21 13:13:37');
+(27, 'Let Us C', 200, 'Basic book for C programming by Y.Kanetkar', 1, 'sub01', 'book', 'UTA003', 'letuscyash.jpg', '2020-11-21 14:44:52'),
+(28, 'C++ by E.Balaguruswamy', 300, 'Good condition book of previous session', 1, 'sub01', 'book', 'UTA043', 'ebalaswami.jpg', '2020-11-21 14:49:53'),
+(29, 'C Programming for Arduino by Julien Bayle', 350, 'Good condition Book', 1, 'sub01', 'Julien Bayle', 'UTA004', 'C_programming_for_arduino_Julien_Bayle.jpg', '2020-11-21 14:58:21'),
+(30, 'Introduction to Algorithms by Thomas H. Corem', 399, 'Book for Beginners and in good condition', 1, 'sub01', 'Thomas H. Corem', 'UTA020', 'Introduction_to_algorithms_by_Thomas_H._Corem.jpg', '2020-11-21 15:08:45'),
+(37, 'Mathematics for finance by Marek Capinski', 300, 'Good book with all basic topics covered', 1, 'sub02', 'Book', 'UED002', 'mathematics_for_finance_by_Marek_Capinski.jpg', '2020-11-21 15:44:17');
 
 -- --------------------------------------------------------
 
@@ -138,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `product_level` (
   `converse` varchar(10) NOT NULL DEFAULT 'no',
   `loafer` varchar(10) NOT NULL DEFAULT 'no',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product_level`
@@ -168,7 +172,19 @@ INSERT INTO `product_level` (`id`, `product_id`, `v_shape`, `polo`, `clean_text`
 (22, 22, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
 (23, 23, 'yes', 'yes', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
 (24, 24, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
-(25, 25, 'no', 'no', 'no', 'yes', 'no', 'no', 'no', 'no', 'no', 'no', 'no');
+(25, 25, 'no', 'no', 'no', 'yes', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(26, 26, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(27, 27, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(28, 28, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(29, 29, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(30, 30, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(31, 31, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(32, 32, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(33, 33, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(34, 34, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(35, 35, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(36, 36, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(37, 37, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no');
 
 -- --------------------------------------------------------
 
