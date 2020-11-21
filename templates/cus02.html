@@ -4,16 +4,16 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
-            <h1 class="my-4">cus01</h1>
+            <h1 class="my-4">cus02</h1>
             <div class="list-group">
                 <a href="/tshirt" class="list-group-item">T-Shirt</a>
                 <a href="/wallet" class="list-group-item">Wallet</a>
                 <a href="/belt" class="list-group-item">Belt</a>
                 <a href="/shoes" class="list-group-item">Shoes</a>
 				<!-- TODO: MULTIPLICATE THIS BLOCK -->
-				<a href="/cus01" class="list-group-item active">cus01</a>
+				<a href="/cus01" class="list-group-item">cus01</a>
 				<!-- TODO: MULTIPLICATE THIS BLOCK -->
-				<a href="/cus02" class="list-group-item">cus02</a>
+				<a href="/cus02" class="list-group-item active">cus02</a>
 				<a href="/cus03" class="list-group-item">cus03</a>
 				<a href="/cus04" class="list-group-item">cus04</a>
 				<a href="/cus05" class="list-group-item">cus05</a>
@@ -66,7 +66,7 @@
             </div>
 
             <div class="row">
-                {% for product in cus01 %}
+                {% for product in cus02 %}
                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-4">
                     <div class="card h-100">
                         <a href="/shoes?view={{product.id}}">
