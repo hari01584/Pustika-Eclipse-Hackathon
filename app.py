@@ -925,10 +925,10 @@ def admin_login():
 
         # Get user by username
         result = cur.execute("SELECT * FROM admin WHERE email=%s", [username])
-
-        if result > 0:
+        data = cur.fetchone()
+        if data:
             # Get stored value
-            data = cur.fetchone()
+            
             password = data['password']
             uid = data['id']
             name = data['firstName']
@@ -965,7 +965,7 @@ def admin_logout():
 @app.route('/admin')
 @is_admin_logged_in
 def admin():
-    curso = mysql.cursor(dictionary=True)
+    curso = mysql.cursor(buffered=True,dictionary=True)
     num_rows = curso.execute("SELECT * FROM products")
     result = curso.fetchall()
     order_rows = curso.execute("SELECT * FROM orders")
@@ -977,7 +977,7 @@ def admin():
 @app.route('/orders')
 @is_admin_logged_in
 def orders():
-    curso = mysql.cursor(dictionary=True)
+    curso = mysql.cursor(buffered=True,dictionary=True)
     num_rows = curso.execute("SELECT * FROM products")
     order_rows = curso.execute("SELECT * FROM orders")
     result = curso.fetchall()
@@ -989,7 +989,7 @@ def orders():
 @app.route('/users')
 @is_admin_logged_in
 def users():
-    curso = mysql.cursor(dictionary=True)
+    curso = mysql.cursor(buffered=True,dictionary=True)
     num_rows = curso.execute("SELECT * FROM products")
     order_rows = curso.execute("SELECT * FROM orders")
     users_rows = curso.execute("SELECT * FROM users")
@@ -1136,7 +1136,7 @@ def edit_product():
         product = curso.fetchall()
         curso.execute("SELECT * FROM product_level WHERE product_id=%s", (product_id,))
         product_level = curso.fetchall()
-        if res:
+        if product:
             if request.method == 'POST':
                 name = request.form.get('name')
                 price = request.form['price']
@@ -1160,7 +1160,9 @@ def edit_product():
                             exe = curso.execute(
                                 "UPDATE products SET pName=%s, price=%s, description=%s, available=%s, category=%s, item=%s, pCode=%s, picture=%s WHERE id=%s",
                                 (name, price, description, available, category, item, code, picture, product_id))
-                            if exe:
+                            print("DEBUG LEVEL 1 WORKINGGGG") 
+                            if dat:
+                                print("DEBUG LEVEL 2 WORKINGGGG") 
                                 if category == 'tshirt':
                                     level = request.form.getlist('tshirt')
                                     for lev in level:
@@ -1197,6 +1199,52 @@ def edit_product():
                                         cur.execute(query, (yes, product_id))
                                         # Commit cursor
                                         mysql.commit()
+                                elif category == 'cus01':  #TODO: DUPLICATE
+                                    level = request.form.getlist('cus01')
+                                    for lev in level:
+                                        yes = 'yes'
+                                        query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(
+                                            field=lev)
+                                        cur.execute(query, (yes, product_id))
+                                        # Commit cursor
+                                        mysql.commit()
+                                elif category == 'cus02':
+                                    level = request.form.getlist('cus02')
+                                    for lev in level:
+                                        yes = 'yes'
+                                        query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(
+                                            field=lev)
+                                        cur.execute(query, (yes, product_id))
+                                        # Commit cursor
+                                        mysql.commit()
+                                elif category == 'cus03':
+                                    level = request.form.getlist('cus03')
+                                    for lev in level:
+                                        yes = 'yes'
+                                        query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(
+                                            field=lev)
+                                        cur.execute(query, (yes, product_id))
+                                        # Commit cursor
+                                        mysql.commit()
+                                elif category == 'cus04':
+                                    level = request.form.getlist('cus04')
+                                    for lev in level:
+                                        yes = 'yes'
+                                        query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(
+                                            field=lev)
+                                        cur.execute(query, (yes, product_id))
+                                        # Commit cursor
+                                        mysql.commit()
+                                elif category == 'cus05':
+                                    level = request.form.getlist('cus05')
+                                    for lev in level:
+                                        yes = 'yes'
+                                        query = 'UPDATE product_level SET {field}=%s WHERE product_id=%s'.format(
+                                            field=lev)
+                                        cur.execute(query, (yes, product_id))
+                                        # Commit cursor
+                                        mysql.commit()
+                                        
                                 else:
                                     flash('Product level not fund', 'danger')
                                     return redirect(url_for('admin_add_product'))

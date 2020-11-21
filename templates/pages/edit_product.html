@@ -54,11 +54,43 @@
                                         {% else %}
                                         <option value="belt">Belt</option>
                                         {% endif %}
+										<!-- TODO: MULTIPLICATE THIS BLOCK -->
                                         {% if product.category == 'shoes' %}
                                         <option value="shoes" selected>Shoes</option>
                                         {% else %}
                                         <option value="shoes">Shoes</option>
                                         {% endif %}
+										<!-- TODO: MULTIPLICATE THIS BLOCK -->
+										{% if product.category == 'cus01' %}
+                                        <option value="cus01" selected>cus01</option>
+                                        {% else %}
+                                        <option value="cus01">cus01</option>
+                                        {% endif %}
+
+										{% if product.category == 'cus02' %}
+                                        <option value="cus02" selected>cus02</option>
+                                        {% else %}
+                                        <option value="cus02">cus02</option>
+                                        {% endif %}
+										
+										{% if product.category == 'cus03' %}
+                                        <option value="cus03" selected>cus03</option>
+                                        {% else %}
+                                        <option value="cus03">cus03</option>
+                                        {% endif %}
+										
+										{% if product.category == 'cus04' %}
+                                        <option value="cus04" selected>cus04</option>
+                                        {% else %}
+                                        <option value="cus04">cus04</option>
+                                        {% endif %}
+										
+										{% if product.category == 'cus05' %}
+                                        <option value="cus05" selected>cus05</option>
+                                        {% else %}
+                                        <option value="cus05">cus05</option>
+                                        {% endif %}
+
                                     </select>
                                 </div>
                                 {% for product_level in product_level %}
