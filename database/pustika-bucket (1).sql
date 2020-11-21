@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 21, 2020 at 09:16 AM
+-- Generation Time: Nov 21, 2020 at 01:18 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -39,14 +39,16 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `type` varchar(20) NOT NULL,
   `confirmCode` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `firstName`, `lastName`, `email`, `mobile`, `address`, `password`, `type`, `confirmCode`) VALUES
-(1, 'HSK', '$$', 'hari01584@gmail.com', '8872276957', 'FZR', '$5$rounds=535000$.5HrQVneq4gk7mRm$zaTyq98TjZN/MILHGHND8tBv.0ZHzQsQFFMtaCCOtBB', 'manager', '0');
+(1, 'HSK', '$$', 'hari01584@gmail.com', '8872276957', 'FZR', '$5$rounds=535000$/aZcgCuhLQo8Lle5$IskgTI..PWhJAzN/R0KFriecscbvdEffH5HfxBOuE/1', 'manager', '0'),
+(2, 'Admin', 'User', 'supersu@s', '00000000000', 'earth', '$5$rounds=535000$oAqAfLqFXt.vR.oR$e8glznWrzA5BclBSpBJnSHJNk2DhYVuTE7Gd/NRCXw9', 'manager', '0'),
+(5, 'Admin2', 'User', 'supersu@s1', '00000000000', 'earth', '$5$rounds=535000$oAqAfLqFXt.vR.oR$e8glznWrzA5BclBSpBJnSHJNk2DhYVuTE7Gd/NRCXw9', 'manager', '0');
 
 -- --------------------------------------------------------
 
@@ -105,33 +107,14 @@ CREATE TABLE IF NOT EXISTS `products` (
   `picture` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `pName`, `price`, `description`, `available`, `category`, `item`, `pCode`, `picture`, `date`) VALUES
-(1, 'T-Shirt', 120, 'T-Custom Item', 4, 'cus01', 'bracelets', 't-007', 'ttv.jpg', '2018-09-20 07:10:40'),
-(2, 'Baborry wallet', 6000, 'Baborry-Double-Zipper-Coin-Bag-RFID-Blocking-Men-Wallets-New-Brand-PU-Leather-Wallet-Money-Purses', 3, 'cus02', 'wallet', 'w-004', 'IMG_1212.jpg', '2018-09-20 07:40:28'),
-(3, 'Loafer Shoes', 2000, 'Loafer black shoes', 8, 'cus03', 'shoes', 's-001', '8544789_5_.jpg', '2018-09-20 08:33:57'),
-(4, 'Artificial Belt', 1200, 'Black artificial belt', 9, 'cus04', 'belt', 'b-001', '0283BLT.jpg', '2018-09-20 08:35:44'),
-(5, 'Polo T-shirt', 500, 'Polo t-shirt', 10, 'cus05', 't-shirt', 's-002', 'lp00-2.jpg', '2018-09-20 08:40:06'),
-(6, 'T-shirt', 300, 'Polo colorful t-shirt', 12, 'tshirt', 't-shirt', 't-003', 'yellow_2_.jpg', '2018-09-20 08:41:18'),
-(7, 'Tshirt', 200, 'Design t-shirt', 10, 'tshirt', 't-shirt', 't-004', 'MSTSV14042.jpg', '2018-09-20 08:42:11'),
-(8, 'T-shirt', 200, 'Color t-shirt', 20, 'tshirt', 't-shirt', 't-005', 'MSTS14759.jpg', '2018-09-20 08:45:39'),
-(9, 'Men\'s Tshirt', 500, 'Colorful men\'s t-shirt', 20, 'tshirt', 't-shirt', 't-006', 'MSTSV14046.jpg', '2018-09-20 08:57:07'),
-(10, 'Sports tshirt', 1000, 'Real madrid t-shirt', 5, 'tshirt', 't-shirt', 't-007', 'MSTSV14039.jpg', '2018-09-20 08:58:38'),
-(12, 'T-shirt', 300, 'Design t-shirt', 10, 'tshirt', 't-shirt', 't-010', 'MSTSV14049.jpg', '2018-09-20 09:02:04'),
-(13, 'Leather Shoes', 2000, 'Best leather shoes', 10, 'shoes', 'shoes', 's-002', '8546789_5_.jpg', '2018-09-21 10:39:32'),
-(14, 'Belt', 2000, 'Nice belt', 20, 'belt', 'belt', 'b-003', 'gbdl18_1.png', '2018-10-01 03:47:08'),
-(15, 'Belt', 300, 'Nice one belt', 20, 'belt', 'belt', 'b-004', '101010_1_.jpg', '2018-10-01 03:48:09'),
-(16, 'Mens Belt', 300, 'Mens belt', 15, 'belt', 'belt', 'b-005', 'image4_2.jpg', '2018-10-01 03:49:08'),
-(17, 'Leather Wallet', 100, 'Leather wallet', 10, 'wallet', 'wallet', 'w-005', 'Baborry-Double-Zipper-Coin-Bag-RFID-Blocking-Men-Wallets-New-Brand-PU-Leather-Wallet-Money-Purses.jpg_640x640.jpg', '2018-10-01 03:51:52'),
-(18, 'Wallet', 300, 'Wallet', 20, 'wallet', 'wallet', 'w-007', '1881_G.jpg', '2018-10-01 03:52:43'),
-(19, 'Black walllet', 300, 'Black mens wallet', 20, 'wallet', 'wallet', 'w-009', 'image5_1_2.jpg', '2018-10-01 03:53:37'),
-(20, 'Men\'s Shoes', 1200, 'Men\'s shoes', 23, 'shoes', 'shoes', 's-003', 'IMG_2429.jpg', '2018-10-01 03:56:41'),
-(21, 'Shoes', 2000, 'Formal Shoes', 12, 'shoes', 'shoes', 's-004', 'G51A7054.jpg', '2018-10-01 03:57:24');
+(25, 'Hilfiger', 700, 'Branded', 1, 'tshirt', 'tshirt', 'cus01', '4.jpg', '2020-11-21 13:13:37');
 
 -- --------------------------------------------------------
 
@@ -155,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `product_level` (
   `converse` varchar(10) NOT NULL DEFAULT 'no',
   `loafer` varchar(10) NOT NULL DEFAULT 'no',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product_level`
@@ -181,7 +164,11 @@ INSERT INTO `product_level` (`id`, `product_id`, `v_shape`, `polo`, `clean_text`
 (18, 18, 'no', 'no', 'no', 'no', 'yes', 'yes', 'no', 'no', 'no', 'no', 'no'),
 (19, 19, 'no', 'no', 'no', 'yes', 'yes', 'yes', 'no', 'no', 'no', 'no', 'no'),
 (20, 20, 'no', 'no', 'no', 'no', 'no', 'yes', 'no', 'no', 'no', 'yes', 'no'),
-(21, 21, 'no', 'no', 'no', 'no', 'no', 'yes', 'no', 'no', 'yes', 'no', 'no');
+(21, 21, 'no', 'no', 'no', 'no', 'no', 'yes', 'no', 'no', 'yes', 'no', 'no'),
+(22, 22, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(23, 23, 'yes', 'yes', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(24, 24, 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no', 'no'),
+(25, 25, 'no', 'no', 'no', 'yes', 'no', 'no', 'no', 'no', 'no', 'no', 'no');
 
 -- --------------------------------------------------------
 
@@ -196,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `product_view` (
   `product_id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product_view`
@@ -211,7 +198,8 @@ INSERT INTO `product_view` (`id`, `user_id`, `product_id`, `date`) VALUES
 (6, 9, 8, '2018-09-21 15:57:50'),
 (7, 9, 6, '2018-09-22 02:12:54'),
 (8, 9, 1, '2018-09-22 03:03:36'),
-(9, 19, 7, '2020-11-21 08:32:28');
+(9, 19, 7, '2020-11-21 08:32:28'),
+(10, 19, 8, '2020-11-21 10:36:15');
 
 -- --------------------------------------------------------
 
@@ -231,13 +219,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `online` varchar(1) NOT NULL DEFAULT '0',
   `activation` varchar(3) NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `mobile`, `reg_time`, `online`, `activation`) VALUES
+(20, 'Admin', 'supersu@s', 'supersu', '$5$rounds=535000$oAqAfLqFXt.vR.oR$e8glznWrzA5BclBSpBJnSHJNk2DhYVuTE7Gd/NRCXw9', '+00000000000', '2020-11-21 12:48:22', '0', 'yes'),
 (19, 'Harishankar Kumar', 'hari01584@gmail.com', 'hari01584', '$5$rounds=535000$/aZcgCuhLQo8Lle5$IskgTI..PWhJAzN/R0KFriecscbvdEffH5HfxBOuE/1', '+918872276957', '2020-11-21 03:57:29', '1', 'yes');
 COMMIT;
 
