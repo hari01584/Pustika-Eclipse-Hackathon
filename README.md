@@ -4,7 +4,7 @@
 
 
 
-पुस्तिका Is A Lightweight Bootstrap Made Solely In Python, It Aims To Enable Students To Effectively Resell Their Old Books And Gives Them A Platform To Sell And Buy Several Good Books!!
+पुस्तिका Is A Lightweight Bootstrap Made Majorly In Python, It Aims To Enable Students To Effectively Resell Their Old Books And Gives Them A Platform To Sell And Buy Several Good Books!!
 
   - Allow P2P Buy/Sell Of Book!
   - All Exchanges Must Be Done Physically, No Support For Online Transcations!
