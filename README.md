@@ -56,13 +56,19 @@ Demo Link(Might not work): http://6abeac2eabfe.ngrok.io
  - **You can place order for books giving your phone no and address.**
  
  
+ 
+ 
+ 
  ### Tech
 
 पुस्तिका uses these source projects to work properly:
 
 * [menshut](https://github.com/mohsinenur/menshut) - Basic flask template for selling goods.
 
-And of course पुस्तिका itself is open source with a [public repository][https://github.com/hari01584/Pustika-Eclipse-Hackathon/] on GitHub.
+And of course पुस्तिका itself is open source with a [public repository](https://github.com/hari01584/Pustika-Eclipse-Hackathon/) on GitHub.
+
+
+
 
 License
 ----
