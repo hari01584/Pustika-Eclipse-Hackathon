@@ -39,7 +39,7 @@ Afterwards we need a backend (ie mysql), you can install mysql server(i used wam
 Now finally run the file app.py and **VOILA** you can see the site on localhost:5000! Enjoy the looks!!
 
 ### Demo
-Demo Links UPCOMING!!   http://6abeac2eabfe.ngrok.io
+Demo Link(Might not work): http://6abeac2eabfe.ngrok.io
 ### Todos
 
  - Flip card for more responsive design.
