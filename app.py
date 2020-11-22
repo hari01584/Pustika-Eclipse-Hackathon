@@ -20,8 +20,6 @@ import mysql.connector
 
 app = Flask(__name__)
 
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0   #TODO: REMOVE THIS
-
 
 app.secret_key = os.urandom(24)
 app.config['UPLOADED_PHOTOS_DEST'] = 'static/image/product'
@@ -192,6 +190,14 @@ class LoginForm(Form):  # Create Login Form
                            render_kw={'autofocus': True, 'placeholder': 'Username'})
     password = PasswordField('', [validators.length(min=3)],
                              render_kw={'placeholder': 'Password'})
+
+#CUSTOM: ABS
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 
 
 # User Login
@@ -1166,9 +1172,7 @@ def edit_product():
                             exe = curso.execute(
                                 "UPDATE products SET pName=%s, price=%s, description=%s, available=%s, category=%s, item=%s, pCode=%s, picture=%s WHERE id=%s",
                                 (name, price, description, available, category, item, code, picture, product_id))
-                            print("DEBUG LEVEL 1 WORKINGGGG") 
                             if True:
-                                print("DEBUG LEVEL 2 WORKINGGGG") 
                                 if category == 'sub01':
                                     level = request.form.getlist('sub01')
                                     for lev in level:
