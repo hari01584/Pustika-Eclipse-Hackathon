@@ -40,10 +40,10 @@ Now finally run the file app.py and **VOILA** you can see the site on localhost:
 
 ### Demo
 On Request Of Several People I am bringing photos of this website, So as to quench your thrust and know what we built!
-<img src="demo/screenshots/01.png" width="300">
-<img src="demo/screenshots/02.png" width="300">
-<img src="demo/screenshots/03.png" width="300">
-<img src="demo/screenshots/04.png" width="300">
+<img src="demo/screenshots/01.png" width="512">
+<img src="demo/screenshots/02.png" width="512">
+<img src="demo/screenshots/03.png" width="512">
+<img src="demo/screenshots/04.png" width="512">
 
 
 
